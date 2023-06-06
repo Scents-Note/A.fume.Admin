@@ -29,6 +29,12 @@ module.exports = {
       },
       gap: px0to100,
       leading: px0to100,
+      boxShadow: {
+        paper: "0px 0px 4px rgba(0, 0, 0, 0.08)",
+      },
+      colors: {
+        "login-background": "#111723",
+      },
     },
   },
   plugins: [],
