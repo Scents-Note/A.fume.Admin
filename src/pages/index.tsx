@@ -9,7 +9,7 @@ import { FormEvent, useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const HomePage: React.FC = (props) => {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -18,12 +18,12 @@ export const HomePage: React.FC = (props) => {
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (username.length === 0 || password.length === 0)
+    if (email.length === 0 || password.length === 0)
       setErrorMessage(ERROR_LOGIN_1);
     else {
       setErrorMessage(null);
       // TODO: JWT 토큰을 받아오는 백엔드 로직 추가하기
-      const response = axios.post("/api/admin/login", { username, password });
+      const response = axios.post("/api/admin/login", { email, password });
       console.log(response);
       // router.push("/main");
     }
@@ -40,8 +40,8 @@ export const HomePage: React.FC = (props) => {
             className="w-200"
             size="small"
             label="아이디"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             className="w-200"
