@@ -1,3 +1,3 @@
-import Logo from "../../common/icons/logo.svg";
+import Logo from '../../common/icons/logo.svg';
 
 export { Logo };
