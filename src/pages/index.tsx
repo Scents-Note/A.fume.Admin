@@ -1,6 +1,7 @@
 import { Login } from "@/api/Login";
 import { ERROR_LOGIN_1 } from "@/common/message/message";
 import { TextField, Button, FormHelperText } from "@mui/material";
+import axios from "axios";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
@@ -22,7 +23,7 @@ export const HomePage: React.FC = (props) => {
     else {
       setErrorMessage(null);
       // TODO: JWT 토큰을 받아오는 백엔드 로직 추가하기
-      const response = await Login(username, password);
+      const response = axios.post("/api/admin/login", { username, password });
       console.log(response);
       // router.push("/main");
     }
