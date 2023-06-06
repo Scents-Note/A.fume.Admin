@@ -40,7 +40,6 @@ export const HomePage: React.FC = (props) => {
 
     try {
       setErrorMessage(null);
-      // TODO: JWT 토큰을 받아오는 백엔드 로직 추가하기
       const response = await Login(email, password);
 
       const loginData = JSON.stringify({
