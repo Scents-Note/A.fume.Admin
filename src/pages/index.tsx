@@ -2,6 +2,7 @@ import { Cancel } from '@mui/icons-material';
 import { TextField, Button, IconButton, InputAdornment } from '@mui/material';
 import { useRouter } from 'next/router';
 import { FormEvent, useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
 
 import { EXPIRED_TIME_FOR_LOGIN_TOKEN } from '@/common/constants/constants';
 import { Login } from '@/common/api/Login';
@@ -29,7 +30,7 @@ export const HomePage: React.FC = () => {
       if (loginData.expired < Date.now()) {
         localStorage.removeItem('token');
       } else {
-        router.replace('/main');
+        router.replace('/main/perfume');
       }
     }
     // @ESLINT_DISABLED useRouter는 내부적으로 리렌더링을 최적화 하고 있음.
@@ -43,13 +44,17 @@ export const HomePage: React.FC = () => {
       setErrorMessage(null);
       const response = await Login(email, password);
 
+      axios.defaults.headers.common[
+        'x-access-token'
+      ] = `Bearer ${response.data.token}`;
+
       const loginData = JSON.stringify({
         token: response.data.token,
         expired: Date.now() + EXPIRED_TIME_FOR_LOGIN_TOKEN,
       });
       localStorage.setItem('token', loginData);
 
-      router.push('/main');
+      router.push('/main/perfume');
       // @ESLINT_DISABLED catch문에서 error는 any 타입이나 unknown을 사용할 것을 강요하고 있음.
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
