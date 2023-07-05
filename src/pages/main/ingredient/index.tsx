@@ -3,15 +3,18 @@ import MUIDataTable, { MUIDataTableColumnDef } from 'mui-datatables';
 import { Pagination } from '@mui/material';
 
 import { MainLayout } from '@/components/icons/pages/main/MainLayout';
-import { GetIngredient, Ingredient } from '@/common/api/ingredient/GetIngredient';
+import {
+  GetIngredient,
+  Ingredient,
+} from '@/common/api/ingredient/GetIngredient';
 
 const columns: MUIDataTableColumnDef[] = [
   { name: 'ingredientIdx', label: 'idx' },
   { name: 'name', label: '이름' },
   { name: 'englishName', label: '영어 이름' },
   { name: 'description', label: '설명' },
-  //   { name: 'story', label: '계열 이름' },
-  //   { name: 'volumeAndPrice', label: '카테고리' },
+  { name: 'series', label: '계열 이름' },
+  { name: 'ingredientCategory', label: '카테고리' },
 ];
 
 // @TODO 예외처리
